@@ -1,0 +1,8 @@
+(0)(10)(33)(100)(108)(114)(111)(119)(32)(44)(111)(108)(108)(101)(72) # push string
+
+>><<
+[ # loop to print all chars
+<><>><< # print char
+>><< # dup and check terminator
+]
+>>><<

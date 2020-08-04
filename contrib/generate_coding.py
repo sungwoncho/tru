@@ -31,6 +31,7 @@ ops = [
     "pop-move",
     "pop-discard",
     "dup",
+    "swap",
     # arithmetic
     "sub",
     "add",
@@ -38,6 +39,8 @@ ops = [
     "gt",
     "eq",
     "not",
+    # flow
+    "end",
 ]
 
 # [] label definition

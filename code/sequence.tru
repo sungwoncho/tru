@@ -1,0 +1,19 @@
+# print from 12 to 0
+(12)
+
+(1111)
+[
+
+# print topmost number
+>><< # dup
+<><>><> # print-int
+
+(10) <><>><< # print newline
+
+>><< # dup
+(1) 
+>>>> # sub
+>><< # dup
+]
+
+>>><<

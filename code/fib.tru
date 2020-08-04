@@ -1,0 +1,47 @@
+(1)
+(9) # the i-th Fibonacci number to print
+
+(1) ><> # select 1
+(1)
+
+(0) ><> # select 0
+(1)
+>>>>
+>><<
+
+[
+
+
+(0) ><> # select 0
+(1) >>>> # sub 1
+>><< # dup
+
+[
+
+>><> # swap
+(1) ><> # select 1
+>><< # dup
+(0) ><> # select 0
+
+
+>>><> # move
+
+(1) ><> # select 1
+<<< # add
+
+>><> # swap
+>>><> # move
+
+(0) ><> # select 0
+>><> # swap
+(1) >>>>
+>><< # dup
+]
+
+(0) # sentinel value to skip conditional
+]
+
+(1) ><> # select 1
+<><>><>
+
+>>><<

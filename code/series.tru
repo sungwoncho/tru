@@ -1,0 +1,25 @@
+(10)
+>><< #dup
+>>><> # pop-move
+(1) ><> # select 1
+
+(111) # sentinel
+[
+(1) >>>> # sub 1
+>><< # dup
+>>><> # pop-move
+
+(0) ><> # select 0
+<<< # add
+
+(1) ><> # select 1
+>><< # dup
+
+(1)
+<>> # eq
+><< # not
+]
+
+(0) ><> # select 0
+<><>><>
+>>><< # done
