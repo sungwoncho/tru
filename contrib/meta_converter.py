@@ -1,3 +1,6 @@
+import os
+import sys
+
 code = {
         "<": "60",
         ">": "62",
@@ -10,22 +13,26 @@ code = {
 cur = ""
 
 if __name__ == '__main__':
-    src = '(0)><>>><<[(0)><>>><<(60)<>>>>><>>><<(62)<>>>>><>(1)><><<<(0)><>>><<(40)<>>>>><>(1)><><<<(0)><>>><<(41)<>>>>><>(1)><><<<(0)><>>><<(91)<>>>>><>(1)><><<<(0)><>>><<(93)<>>>>><>(1)><><<<(0)><>(1)><>>><<[(0)><><><>><<(0)](1)><>><<>><<[(0)><><><>><>(0)](0)><>>><<]>>><<'
-    out = []
 
-    for char in src:
-        if char in code:
-            if cur != "":
-                out.append("(" + str(cur) + ")")
-                cur = ""
+    abspath = os.path.abspath(sys.argv[1])
+    with open(abspath) as src:
+        content = src.read()
 
-            out.append("("+code[char]+")")
-        else:
-            cur = cur + str(char)
+        out = []
 
-    if cur != "":
-        out.append("(" + str(cur) + ")")
+        for char in content:
+            if char in code:
+                if cur != "":
+                    out.append("(" + str(cur) + ")")
+                    cur = ""
 
-    out.reverse()
-    res = ''.join(out)
-    print(res)
+                out.append("("+code[char]+")")
+            else:
+                cur = cur + str(char)
+
+        if cur != "":
+            out.append("(" + str(cur) + ")")
+
+        out.reverse()
+        res = ''.join(out)
+        print(res)
