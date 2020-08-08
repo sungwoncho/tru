@@ -259,8 +259,6 @@ class VM:
                 val = self.pop_stack()
                 if val == 0:
                     label = self.lexer.seek_closing_label()
-                    print(label.line)
-                    print(label.cursor)
                     self.lexer.set_pos(label.line, label.cursor+1)
                     self.lexer.advance()
                 else:
@@ -371,7 +369,6 @@ class VM:
         if tok.kind != TOK_NUM:
             print("invalid token")
             return
-
 
         num = tok.value
         # debug(f"pushing {num} to s{self.current_stack}")
