@@ -26,31 +26,11 @@ Below are some tru code examples.
 (9999)(60)(60)(62)(62)(62)(60)(60)(62)(60)(93)(60)(60)(62)(62)(62)(60)(60)(60)(60)(41)(1)(40)(41)(9998)(40)(60)(60)(62)(62)(93)(41)(0)(40)(62)(60)(62)(41)(0)(40)(41)(7777)(40)(62)(60)(62)(41)(1)(40)(60)(60)(62)(62)(60)(62)(60)(62)(60)(62)(62)(62)(60)(60)(62)(62)(62)(60)(62)(41)(0)(40)(91)(60)(60)(62)(62)(60)(62)(41)(1)(40)(93)(41)(0)(40)(62)(60)(62)(41)(0)(40)(41)(8888)(40)(62)(60)(62)(41)(1)(40)(62)(60)(62)(62)(60)(62)(60)(62)(60)(62)(62)(62)(60)(60)(62)(62)(62)(60)(62)(41)(0)(40)(91)(60)(60)(62)(62)(62)(62)(60)(41)(2)(40)(62)(60)(62)(41)(1)(40)(62)(60)(62)(62)(62)(60)(60)(60)(62)(60)(62)(41)(0)(40)(62)(60)(62)(62)(62)(62)(62)(60)(41)(40)(40)(60)(60)(62)(62)(62)(60)(62)(62)(62)(62)(62)(60)(41)(7777)(40)(62)(60)(62)(41)(1)(40)(91)(41)(1)(40)(41)(1)(40)(41)(8888)(40)(62)(60)(62)(41)(1)(40)(60)(60)(62)(60)(93)(93)(41)(0)(40)(60)(60)(62)(62)(60)(62)(60)(41)(41)(40)(62)(60)(62)(62)(60)(62)(60)(62)(60)(62)(62)(62)(60)(60)(62)(62)(60)(60)(62)(62)(60)(62)(60)(41)(40)(40)(62)(60)(62)(62)(91)(60)(60)(62)(62)(60)(60)(62)(62)(62)(60)(60)(60)(60)(41)(1)(40)(41)(9998)(40)(60)(60)(62)(62)(62)(60)(62)(41)(1)(40)(91)(41)(1)(40)(60)(60)(60)(41)(1)(40)(41)(9998)(40)(62)(60)(62)(41)(0)(40)(60)(60)(62)(62)(60)(62)(60)(41)(41)(40)(62)(60)(62)(62)(60)(62)(60)(60)(60)(60)(41)(1)(40)(41)(9998)(40)(60)(60)(62)(62)(60)(62)(60)(41)(40)(40)(60)(60)(62)(60)(93)(93)(41)(0)(40)(62)(60)(62)(62)(62)(62)(60)(62)(62)(91)(60)(60)(62)(62)(60)(60)(62)(62)(62)(60)(60)(60)(60)(41)(1)(40)(41)(9998)(40)(60)(60)(62)(62)(62)(60)(62)(41)(0)(40)(91)(41)(1)(40)(60)(60)(60)(41)(1)(40)(41)(9998)(40)(62)(60)(62)(41)(1)(40)(1)><>(9998)(1)<<<(1)[(0)><>>><<(9998)(1)<<<<>>><<>><<[>><>>>><>(0)]]<><<(40)<><>><<(9998)(1)<<<<><>><>(41)<><>><<(0)><>(9998)(1)<<<(1)[(1)><>>><<(9998)(1)<<<<>>><<>><<[>><>(40)<><>><<>><<>>><><><>><>(41)<><>><<(0)]]<><<(1)><>(8888)(1)(1)[(1)><>(7777)<>>>>><>>><<(40)<>>>>><>(0)><><<<>>><>(1)><>(2)<>>>><<[(0)><>>><<>>><><><>><>(1)><>(8888)(0)><>(0)](1)><>><<[(0)><>>><<>>><><><>><<(1)><>(7777)(0)><>(0)]>><<(9998)(1)<<<<>>><<]<><<>>><<
 ```
 
-## Design
-
-Instructions are represented by only using bracket characters:
-
-* `(`, `)`, `<`, `>`, `[`, `]`
-
-Instructions are prefix-free and can directly follow one another. For instance,
-
-```
-(1)
->><<
-(2)
-<<<
-<><>><<
-```
-
-is equivalent to
-
-```
-(1)>><<(2)<<<<><>><<
-```
-
 ## Specification
 
-The following is the tru language specification.
+Tru is a stack-based virtual machine.
+
+There are two built-in stacks which tru programs can manipulate using the following set of instructions.
 
 ### Instructions
 
@@ -72,16 +52,36 @@ The following is the tru language specification.
 | `<<>`  |  Greater than |
 | `<>>`  | Equals  |
 | `><<`  | Not  |
-| `><>`  | Select stack: Pop from the stack and set the current stack equal to the value  |
+| `><>`  | Select stack: Pop from the stack and set the current stack equal to the value. The stacks are indexed 0 and 1.  |
 | `[`  | Jump: Pop the current stack and jump to the matching ] if the value is zero  |
 | `]`  | Jump: Pop the current stack and jump to the matching [ if the value is non-zero   |
 | `#`  | Comment: ignore all characters that follow for the rest of the line |
 
+In summary, instructions are represented by only using bracket characters:
+
+```
+(, ), [, ], <, >
+```
+
+Instructions are prefix-free and can directly follow one another. For instance,
+
+```
+(1)
+>><<
+(2)
+<<<
+<><>><<
+```
+
+is equivalent to
+
+```
+(1)>><<(2)<<<<><>><<
+```
+
 ### Linebreaks and spaces
 
-Linebreaks and spaces are permitted and generally ignored, with exceptions:
-
-* numbers cannot contain linebreaks or spaces in between its characters.
+Linebreaks and spaces are permitted and generally ignored. However, numbers and instructions cannot be broken with linebreaks or spaces.
 
 ```
 # Okay
@@ -94,11 +94,7 @@ Linebreaks and spaces are permitted and generally ignored, with exceptions:
 1
 0
 )
-```
 
-* instructions cannot contain linebreaks or spaces in between its characters.
-
-```
 # Okay
 >><<
 
@@ -107,7 +103,9 @@ Linebreaks and spaces are permitted and generally ignored, with exceptions:
 <<
 ```
 
-## Tru virtual machine
+One can write a relatively readable tru program using linebreaks, spaces and comments. It can always be compressed due to the prefix-free nature of the instructions.
+
+## Tru VM implementation
 
 Pytru is an official tru virtual machine implemented in Python. You can use it to execute tru code.
 
