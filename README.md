@@ -63,6 +63,6 @@ is equivalent to
 | `<>>`  | Equals  |
 | `><<`  | Not  |
 | `><>`  | Select stack: Pop from the stack and set the current stack equal to the value  |
-| `[`  | Jump: Pop the current stack and jump to the matching ] if the value is nonzero  |
-| `]`  | Jump: Pop the current stack and jump to the matching [ if the value is zero   |
+| `[`  | Jump: Pop the current stack and jump to the matching ] if the value is zero  |
+| `]`  | Jump: Pop the current stack and jump to the matching [ if the value is non-zero   |
 | `#`  | Comment  |
