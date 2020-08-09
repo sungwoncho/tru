@@ -33,6 +33,6 @@ if __name__ == '__main__':
         if cur != "":
             out.append("(" + str(cur) + ")")
 
-        out.reverse()
+        #out.reverse()
         res = ''.join(out)
         print(res)

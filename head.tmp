@@ -1,6 +1,4 @@
-(1)
-[
-
+(1)[
 (1)><>
 (7777) <>> >>><> # eq to 1? save result in the other stack
 >><< (40)<>> >>><> # eq to 40? save result in the other stack
@@ -18,5 +16,35 @@
 # terminator
 >><<(9998)(1)<<< <>>><<
 ]
+<><< # discard terminator
+
+(1)[
+(0)><>
+
+>><<(9998)(1)<<< <>>><< >><< # eq to 9999?
+[>><> (40) <><>><< <><>><> (41) <><>><< (0)] # print as int push
+]
+<><< # discard terminator
+
+
+(1)[
+(1)><>
+(7777) <>> >>><> # eq to 1? save result in the other stack
+>><< (40)<>> >>><> # eq to 40? save result in the other stack
+(0)><>
+<<< >>><>
+
+(1) ><>
+(2) <>>
+>><<
+[(0)><> >><< >>><> <><>><> (1)><>(8888) (0)><>(0)] # (8888) indicates that int was printed
+
+(1)><> ><<
+[(0)><> >><< >>><> <><>><< (1)><>(7777) (0)><>(0)] # (7777) indicates that utf-8 was printed
+
+# terminator
+>><<(9998)(1)<<< <>>><<
+]
+<><< # discard terminator
 
 >>><<
