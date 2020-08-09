@@ -70,18 +70,19 @@ Instructions are prefix-free and can directly follow one another. For instance,
 >><<
 (2)
 <<<
+>><<
 <><>><<
 ```
 
 is equivalent to
 
 ```
-(1)>><<(2)<<<<><>><<
+(1)>><<(2)<<<>><<<><>><<
 ```
 
 ### Linebreaks and spaces
 
-Linebreaks and spaces are permitted and generally ignored. However, numbers and instructions cannot be broken with linebreaks or spaces.
+Linebreaks and spaces are permitted and ignored. However, numbers and instructions cannot be broken with linebreaks or spaces.
 
 ```
 # Okay
