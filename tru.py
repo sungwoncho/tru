@@ -1,3 +1,6 @@
+# pytru: a tru virtual machine implemented in python
+# USAGE: python3 ./tru.py input_file_path
+
 import sys
 import os
 
